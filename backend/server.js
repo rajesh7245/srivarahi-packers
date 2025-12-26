@@ -5,41 +5,40 @@ const { MongoClient, ObjectId } = require("mongodb");
 
 const app = express();
 
-/* ===================== PORT (VERY IMPORTANT) ===================== */
-const PORT = process.env.PORT || 5000;
-
-/* ===================== MIDDLEWARE ===================== */
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
-
+// ================= MIDDLEWARE =================
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-/* ===================== SERVE FRONTEND ===================== */
+// ================= SERVE FRONTEND =================
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-/* ===================== MONGODB ===================== */
-const uri = process.env.MONGODB_URI; // FROM RENDER ENV
+// ================= MONGODB =================
+const uri = process.env.MONGODB_URI; // 🔥 MUST come from Render env
 const client = new MongoClient(uri);
 let db;
 
-async function connectDB() {
+// ================= CONNECT & START SERVER =================
+async function startServer() {
   try {
     await client.connect();
     db = client.db("srivarahi_packers");
     console.log("✅ MongoDB Connected");
+
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
+
   } catch (err) {
-    console.error("❌ MongoDB Connection Failed", err);
+    console.error("❌ MongoDB connection failed", err);
+    process.exit(1);
   }
 }
-connectDB();
 
-/* ===================== CREATE BOOKING ===================== */
+startServer();
+
+// ================= CREATE BOOKING =================
 app.post("/book", async (req, res) => {
   try {
     await db.collection("bookings").insertOne({
@@ -54,39 +53,37 @@ app.post("/book", async (req, res) => {
     });
 
     res.json({ message: "Booking submitted successfully 🚚" });
+
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Booking failed" });
+    console.error("❌ Booking error:", err);
+    res.status(500).json({ message: "Booking failed. Please try again." });
   }
 });
 
-/* ===================== ADMIN APIs ===================== */
+// ================= GET BOOKINGS =================
 app.get("/bookings", async (req, res) => {
-  try {
-    const data = await db.collection("bookings").find().toArray();
-    res.json(data);
-  } catch {
-    res.status(500).json({ message: "Fetch failed" });
-  }
+  const data = await db.collection("bookings").find().toArray();
+  res.json(data);
 });
 
+// ================= DELETE =================
 app.delete("/bookings/:id", async (req, res) => {
-  try {
-    await db.collection("bookings").deleteOne({
-      _id: new ObjectId(req.params.id),
-    });
-    res.json({ message: "Booking deleted" });
-  } catch {
-    res.status(500).json({ message: "Delete failed" });
-  }
+  await db.collection("bookings").deleteOne({
+    _id: new ObjectId(req.params.id),
+  });
+  res.json({ message: "Deleted" });
 });
 
-/* ===================== ADMIN LOGIN ===================== */
+// ================= UPDATE STATUS =================
+app.put("/bookings/:id/status", async (req, res) => {
+  await db.collection("bookings").updateOne(
+    { _id: new ObjectId(req.params.id) },
+    { $set: { status: req.body.status } }
+  );
+  res.json({ message: "Updated" });
+});
+
+// ================= ADMIN =================
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/admin.html"));
-});
-
-/* ===================== START SERVER ===================== */
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
 });

@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Admin Panel - Sri Varahi Packers</title>
+
   <style>
     body {
       font-family: Arial;
@@ -10,6 +11,7 @@
     table {
       border-collapse: collapse;
       width: 100%;
+      margin-top: 20px;
     }
     th, td {
       border: 1px solid #333;
@@ -19,105 +21,116 @@
     th {
       background-color: #f4f4f4;
     }
+    button {
+      padding: 6px 10px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
-  <h2>📦 Sri Varahi Packers & Movers - Bookings</h2>
+<script>
+  // 🔐 SIMPLE ADMIN PASSWORD PROTECTION
+  const ADMIN_PASSWORD = "admin123"; // change this
 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Date</th>
-        <th>Created At</th>
-        <th>Status</th>
-        <th>Action</th>
+  const entered = prompt("Enter Admin Password:");
+  if (entered !== ADMIN_PASSWORD) {
+    alert("❌ Wrong password");
+    window.location.href = "/";
+  }
+</script>
+
+<h2>📦 Sri Varahi Packers & Movers - Bookings</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <th>Created At</th>
+      <th>Status</th>
+      <th>Action</th>
     </tr>
-    </thead>
-    <tbody id="tableBody"></tbody>
-  </table>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
 
-  <script>
-    fetch("http://localhost:5000/bookings")
-      .then(res => res.json())
-      .then(data => {
-        const table = document.getElementById("tableBody");
-        data.forEach(b => {
-          table.innerHTML += `
-  <tr>
-    <td>${b.name}</td>
-    <td>${b.phone}</td>
-    <td>${b.from}</td>
-    <td>${b.to}</td>
-    <td>${b.date}</td>
-<td>${new Date(b.createdAt).toLocaleString()}</td>
-<td>
-  <select onchange="updateStatus('${b._id}', this.value)">
-    <option value="Pending" ${b.status === "Pending" ? "selected" : ""}>Pending</option>
-    <option value="Confirmed" ${b.status === "Confirmed" ? "selected" : ""}>Confirmed</option>
-    <option value="Completed" ${b.status === "Completed" ? "selected" : ""}>Completed</option>
-  </select>
-</td>
-
-
-   
-
-    <td>
-      <button onclick="deleteBooking('${b._id}')">Delete</button>
-    </td>
-  </tr>
-`;
-
- });
-});
-function deleteBooking(id) {
-  fetch(`http://localhost:5000/bookings/${id}`, {
-    method: "DELETE"
-  })
-  .then(res => res.json())
-  .then(() => {
-    alert("Booking deleted");
-    location.reload();
-  });
-}
-function updateStatus(id, status) {
-  fetch(`http://localhost:5000/bookings/${id}/status`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ status })
-  });
-}
-
-
-  </script>
 <hr>
 
 <h3>🔐 Change Admin Password</h3>
 
 <input type="password" id="oldPass" placeholder="Old Password"><br><br>
 <input type="password" id="newPass" placeholder="New Password"><br><br>
-
 <button onclick="changePassword()">Change Password</button>
 
 <script>
-function changePassword() {
-  const oldPassword = document.getElementById("oldPass").value;
-  const newPassword = document.getElementById("newPass").value;
+  // ✅ LOAD BOOKINGS (PRODUCTION SAFE)
+  fetch("/bookings")
+    .then(res => res.json())
+    .then(data => {
+      const table = document.getElementById("tableBody");
+      table.innerHTML = "";
 
-  fetch("/change-password", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ oldPassword, newPassword })
-  })
-  .then(res => res.json())
-  .then(data => alert(data.message));
-}
+      data.forEach(b => {
+        table.innerHTML += `
+          <tr>
+            <td>${b.name}</td>
+            <td>${b.phone}</td>
+            <td>${b.from}</td>
+            <td>${b.to}</td>
+            <td>${b.date}</td>
+            <td>${new Date(b.createdAt).toLocaleString()}</td>
+            <td>
+              <select onchange="updateStatus('${b._id}', this.value)">
+                <option value="Pending" ${b.status === "Pending" ? "selected" : ""}>Pending</option>
+                <option value="Confirmed" ${b.status === "Confirmed" ? "selected" : ""}>Confirmed</option>
+                <option value="Completed" ${b.status === "Completed" ? "selected" : ""}>Completed</option>
+              </select>
+            </td>
+            <td>
+              <button onclick="deleteBooking('${b._id}')">Delete</button>
+            </td>
+          </tr>
+        `;
+      });
+    });
+
+  // ✅ DELETE BOOKING
+  function deleteBooking(id) {
+    if (!confirm("Are you sure?")) return;
+
+    fetch(`/bookings/${id}`, { method: "DELETE" })
+      .then(() => {
+        alert("Booking deleted");
+        location.reload();
+      });
+  }
+
+  // ✅ UPDATE STATUS
+  function updateStatus(id, status) {
+    fetch(`/bookings/${id}/status`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status })
+    });
+  }
+
+  // ✅ CHANGE ADMIN PASSWORD
+  function changePassword() {
+    const oldPassword = document.getElementById("oldPass").value;
+    const newPassword = document.getElementById("newPass").value;
+
+    fetch("/change-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ oldPassword, newPassword })
+    })
+    .then(res => res.json())
+    .then(data => alert(data.message));
+  }
 </script>
 
 </body>
