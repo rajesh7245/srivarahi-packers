@@ -4,20 +4,28 @@ const cors = require("cors");
 const { MongoClient, ObjectId } = require("mongodb");
 
 const app = express();
-const PORT = 5000;
 
-// ================= MIDDLEWARE =================
-app.use(cors());
+/* ================= PORT (IMPORTANT) ================= */
+const PORT = process.env.PORT || 5000;
+
+/* ================= CORS (FIXED FOR ALL DEVICES) ================= */
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
+/* ================= BODY PARSERS ================= */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ================= SERVE FRONTEND =================
+/* ================= SERVE FRONTEND ================= */
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-// ================= MONGODB =================
-const uri =
-  "mongodb+srv://rajesh090:Rajesh%40090@myproject.acm0qiz.mongodb.net/?appName=myproject";
-
+/* ================= MONGODB ================= */
+const uri = process.env.MONGODB_URI; // 🔒 from Render env
 const client = new MongoClient(uri);
 let db;
 
@@ -32,7 +40,7 @@ async function connectDB() {
 }
 connectDB();
 
-// ================= CREATE BOOKING =================
+/* ================= CREATE BOOKING ================= */
 app.post("/book", async (req, res) => {
   try {
     await db.collection("bookings").insertOne({
@@ -48,11 +56,12 @@ app.post("/book", async (req, res) => {
 
     res.json({ message: "Booking submitted successfully 🚚" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Booking failed" });
   }
 });
 
-// ================= GET ALL BOOKINGS =================
+/* ================= GET ALL BOOKINGS ================= */
 app.get("/bookings", async (req, res) => {
   try {
     const data = await db.collection("bookings").find().toArray();
@@ -62,56 +71,36 @@ app.get("/bookings", async (req, res) => {
   }
 });
 
-// ================= DELETE BOOKING =================
+/* ================= DELETE BOOKING ================= */
 app.delete("/bookings/:id", async (req, res) => {
   try {
     await db.collection("bookings").deleteOne({
       _id: new ObjectId(req.params.id),
     });
-
     res.json({ message: "Booking deleted successfully" });
   } catch (err) {
     res.status(500).json({ message: "Delete failed" });
   }
 });
 
-// ================= UPDATE STATUS =================
+/* ================= UPDATE STATUS ================= */
 app.put("/bookings/:id/status", async (req, res) => {
   try {
     await db.collection("bookings").updateOne(
       { _id: new ObjectId(req.params.id) },
       { $set: { status: req.body.status } }
     );
-
     res.json({ message: "Status updated" });
   } catch (err) {
     res.status(500).json({ message: "Status update failed" });
   }
 });
 
-// ================= ADMIN LOGIN =================
-
-// Admin login page
+/* ================= ADMIN LOGIN ================= */
 app.get("/admin", (req, res) => {
-  res.send(`
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Admin Login</title>
-</head>
-<body style="font-family:Arial; padding:40px;">
-  <h2>Admin Login</h2>
-  <form method="POST" action="/admin-login">
-    <input type="password" name="password" placeholder="Enter Password" required />
-    <br><br>
-    <button type="submit">Login</button>
-  </form>
-</body>
-</html>
-  `);
+  res.sendFile(path.join(__dirname, "../frontend/admin-login.html"));
 });
 
-// Check admin password from MongoDB
 app.post("/admin-login", async (req, res) => {
   try {
     const admin = await db.collection("admin").findOne({ username: "admin" });
@@ -126,7 +115,7 @@ app.post("/admin-login", async (req, res) => {
   }
 });
 
-// ================= CHANGE ADMIN PASSWORD =================
+/* ================= CHANGE ADMIN PASSWORD ================= */
 app.post("/change-password", async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
@@ -148,7 +137,7 @@ app.post("/change-password", async (req, res) => {
   }
 });
 
-// ================= START SERVER =================
+/* ================= START SERVER ================= */
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
