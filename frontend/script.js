@@ -10,7 +10,8 @@ document.getElementById("bookingForm").addEventListener("submit", function (e) {
     date: document.getElementById("date").value
   };
 
-  fetch("https://srivarahi-packers.onrender.com/book", {
+    fetch("/book", {
+
     method: "POST",
     headers: {
       "Content-Type": "application/json"
