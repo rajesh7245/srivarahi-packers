@@ -11,7 +11,8 @@ document.getElementById("bookingForm").addEventListener("submit", function (e) {
 };
 
 
-  fetch("http://localhost:5000/book", {
+  fetch("/book", {
+
     method: "POST",
     headers: {
       "Content-Type": "application/json"
