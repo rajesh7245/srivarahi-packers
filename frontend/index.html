@@ -9,43 +9,47 @@
 
 <body>
 
-<!-- TOP INFO BAR -->
-<div class="top-info-bar">
-  <div class="info-item">
-    📍 Opp. Government Polytechnic College, Gujarathi Peta, Srikakulam – 532005
-  </div>
-  <div class="info-item">
-    📧 <a href="mailto:srivarahipackersandmovers@gmail.com">
-      srivarahipackersandmovers@gmail.com
-    </a>
-  </div>
-  <div class="info-item">
-    📞 <a href="tel:9492160373">9492160373</a>
-  </div>
+<!-- ================= TOP BAR ================= -->
+<div class="top-bar">
+  <span>📍 Srikakulam</span>
+  <span>📧 srivarahipackersandmovers@gmail.com</span>
+  <span>📞 9492160373</span>
 </div>
 
-<!-- HEADER -->
-<header class="site-header">
-  <div class="header-center">
-    <img src="logo.png.jpeg" alt="Sri Varahi Logo" class="header-logo">
-
-    <h1>Sri Varahi Packers & Movers</h1>
-    <p>Safe • Reliable • Affordable</p>
+<!-- ================= HEADER ================= -->
+<header class="main-header">
+  <div class="logo-box">
+    <img src="logo.png.jpeg" alt="Sri Varahi Logo">
+    <div class="logo-text">
+      <h1>Sri Varahi Packers & Movers</h1>
+      <p>Safe • Reliable • Affordable</p>
+    </div>
   </div>
+
+  <nav class="nav-links">
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#whyus">Why Us</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#contact" class="nav-btn">Book Now</a>
+  </nav>
+
+  <div class="menu-icon" onclick="openMenu()">☰</div>
 </header>
 
-
-<!-- NAVBAR -->
-<nav class="nav">
+<!-- ================= SIDEBAR (MOBILE) ================= -->
+<div class="sidebar" id="sidebar">
+  <span class="close-btn" onclick="closeMenu()">×</span>
   <a href="#">Home</a>
   <a href="#services">Services</a>
   <a href="#about">About</a>
   <a href="#whyus">Why Us</a>
   <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
+  <a href="#contact">Contact</a>
+</div>
 
-</nav>
-
+<!-- ================= HERO ================= -->
 <section class="hero">
   <div class="hero-overlay">
     <h1>Safe & Reliable Packers and Movers</h1>
@@ -58,151 +62,85 @@
   </div>
 </section>
 
-
-
-<!-- BOOKING FORM -->
+<!-- ================= BOOKING FORM ================= -->
 <section class="form-container reveal" id="contact">
   <h3>Book Your Move</h3>
   <form id="bookingForm">
 
-  <input id="name" placeholder="Your Name" required>
+    <input id="name" placeholder="Your Name" required>
+    <input id="phone" placeholder="Phone Number" required>
+    <input id="from" placeholder="Moving From" required>
+    <input id="to" placeholder="Moving To" required>
 
-  <input id="phone" placeholder="Phone Number" required>
+    <select id="service" required>
+      <option value="">Select Service</option>
+      <option>Local Shifting</option>
+      <option>All India Shifting</option>
+      <option>Packing & Unpacking</option>
+      <option>Loading & Unloading</option>
+      <option>House & Vehicle Shifting</option>
+    </select>
 
-  <input id="from" placeholder="Moving From" required>
+    <input id="date" type="date" required>
+    <button type="submit">Get Free Quote</button>
 
-  <input id="to" placeholder="Moving To" required>
-
-  <!-- SELECT SERVICE -->
-  <select id="service" required>
-    <option value="">Select Service</option>
-    <option value="Local Shifting">Local Shifting</option>
-    <option value="All India Shifting">All India Shifting</option>
-    <option value="Packing & Unpacking">Packing & Unpacking</option>
-    <option value="Loading & Unloading">Loading & Unloading</option>
-    <option value="House & Vehicle Shifting">House & Vehicle Shifting</option>
-  </select>
-
-  <input id="date" type="date" required>
-
-  <button type="submit">Get Free Quote</button>
-
-</form>
-
+  </form>
 </section>
 
-<!-- SERVICES -->
+<!-- ================= SERVICES ================= -->
 <section class="services reveal" id="services">
-
   <h2>Our Services</h2>
 
   <div class="service-grid">
+    <div class="service-card">
+      <img src="images/local-shifting.jpg">
+      <h3>Local Shifting</h3>
+      <p>Fast and reliable local relocation.</p>
+    </div>
 
-    <a href="services/local-shifting.html" class="service-link">
-      <div class="service-card">
-        <img src="images/local-shifting.jpg">
-        <h3>Local Shifting</h3>
-        <p>Fast, safe, and reliable relocation services within your city.</p>
-      </div>
-    </a>
+    <div class="service-card">
+      <img src="images/all-india-shifters.jpeg">
+      <h3>All India Shifting</h3>
+      <p>Interstate relocation across India.</p>
+    </div>
 
-    <a href="services/all-india-shifting.html" class="service-link">
-      <div class="service-card">
-        <img src="images/all-india-shifters.jpeg">
-        <h3>All India Shifting</h3>
-        <p>Trusted intercity and interstate relocation across India.</p>
-      </div>
-    </a>
+    <div class="service-card">
+      <img src="images/packing-unpacking.jpeg">
+      <h3>Packing & Unpacking</h3>
+      <p>High quality packing materials.</p>
+    </div>
 
-    <a href="services/packing-unpacking.html" class="service-link">
-      <div class="service-card">
-        <img src="images/packing-unpacking.jpeg">
-        <h3>Packing & Unpacking</h3>
-        <p>Professional packing and unpacking using high-quality materials.</p>
-      </div>
-    </a>
-
-    <a href="services/loading-unloading.html" class="service-link">
-      <div class="service-card">
-        <img src="images/loading-unloading.jpeg">
-        <h3>Loading & Unloading</h3>
-        <p>Safe loading and unloading handled by trained professionals.</p>
-      </div>
-    </a>
-
-    <a href="services/house-vehicle-shifting.html" class="service-link">
-      <div class="service-card">
-        <img src="images/house-and-vechile-shifting.jpeg">
-        <h3>House & Vehicle Shifting</h3>
-        <p>Complete household and vehicle shifting with utmost care.</p>
-      </div>
-    </a>
-
+    <div class="service-card">
+      <img src="images/loading-unloading.jpeg">
+      <h3>Loading & Unloading</h3>
+      <p>Handled by trained professionals.</p>
+    </div>
   </div>
 </section>
 
-<!-- ABOUT US -->
+<!-- ================= ABOUT ================= -->
 <section class="about-us reveal" id="about">
-
   <div class="about-wrapper">
 
-    <!-- LEFT CONTENT -->
     <div class="about-text">
       <h4>About Us</h4>
-      <h2>SRI VARAHI PACKERS AND MOVERS</h2>
-
+      <h2>Sri Varahi Packers & Movers</h2>
       <p>
-        Sri Varahi Packers and Movers is a trusted and professional relocation
-        service provider based in Srikakulam. We specialize in safe, reliable,
-        and affordable packing and moving solutions for households, offices,
-        and vehicles.
-      </p>
-
-      <p>
-        With a dedicated team of trained professionals, we ensure door-to-door
-        relocation services with high-quality packing materials and modern
-        handling techniques to keep your belongings safe.
-      </p>
-
-      <p>
-        Whether you are shifting locally or relocating across India, we are
-        committed to delivering a smooth, stress-free moving experience with
-        complete customer satisfaction.
-      </p>
-
-      <p><strong>📍 Address:</strong><br>
-        Opp. Government Polytechnic College,<br>
-        Gujarathi Peta, Srikakulam – 532005
-      </p>
-
-      <p><strong>📞 Mobile:</strong>
-        <a href="tel:9492160373">9492160373</a>
-      </p>
-
-      <p><strong>📧 Email:</strong>
-        <a href="mailto:srivarahipackersandmovers@gmail.com">
-          srivarahipackersandmovers@gmail.com
-        </a>
+        Sri Varahi Packers and Movers is a trusted relocation service
+        provider based in Srikakulam offering safe and affordable solutions.
       </p>
     </div>
 
-    <!-- RIGHT CONTENT -->
     <div class="about-video">
-      <iframe
-        src="https://www.youtube.com/embed/vklumSBkf1c"
-        title="Sri Varahi Packers & Movers"
-        allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/vklumSBkf1c" allowfullscreen></iframe>
     </div>
 
   </div>
 </section>
 
-
-
-<!-- WHY US -->
+<!-- ================= WHY US ================= -->
 <section class="why-us reveal" id="whyus">
-  <h2>Why Choose Sri Varahi?</h2>
+  <h2>Why Choose Us?</h2>
   <div class="why-grid">
     <div class="why-box">✔ Experienced Team</div>
     <div class="why-box">✔ Quality Packing</div>
@@ -211,11 +149,44 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
-  © 2025 Sri Varahi Packers & Movers
+  <div>
+    <h3>Sri Varahi Packers</h3>
+    <p>Trusted Packers & Movers in Srikakulam.</p>
+  </div>
+
+  <div>
+    <h4>Services</h4>
+    <p>House Shifting</p>
+    <p>Office Relocation</p>
+    <p>Vehicle Transport</p>
+  </div>
+
+  <div>
+    <h4>Quick Links</h4>
+    <p>Home</p>
+    <p>About</p>
+    <p>Contact</p>
+  </div>
+
+  <div>
+    <h4>Contact</h4>
+    <p>📞 9492160373</p>
+    <p>📧 srivarahipackersandmovers@gmail.com</p>
+  </div>
 </footer>
 
 <script src="script.js"></script>
+
+<script>
+function openMenu() {
+  document.getElementById("sidebar").style.right = "0";
+}
+function closeMenu() {
+  document.getElementById("sidebar").style.right = "-260px";
+}
+</script>
+
 </body>
 </html>
