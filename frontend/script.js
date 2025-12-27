@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ================================
+     HERO POP-UP ON LOAD
+  ================================ */
+  const hero = document.querySelector(".hero");
+  if (hero) {
+    hero.classList.add("hero-show");
+  }
+
+  /* ================================
      BOOKING FORM SUBMIT
   ================================ */
   const bookingForm = document.getElementById("bookingForm");
@@ -18,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
         date: document.getElementById("date").value
       };
 
-      fetch("/book", {
+        fetch("http://localhost:5000/book", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -26,9 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(bookingData)
       })
         .then(res => {
-          if (!res.ok) {
-            throw new Error("Network error");
-          }
+          if (!res.ok) throw new Error("Network error");
           return res.json();
         })
         .then(data => {
@@ -60,12 +67,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.addEventListener("scroll", revealOnScroll);
-  revealOnScroll(); // run once on load
+  revealOnScroll();
+
+  /* ================================
+     SERVICES DROPDOWN (MOBILE ONLY) ✅
+  ================================ */
+  const serviceLink = document.querySelector(".services-link");
+  const dropdown = document.querySelector(".nav-dropdown");
+
+  if (serviceLink && dropdown && window.innerWidth <= 768) {
+    serviceLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      dropdown.classList.toggle("open");
+    });
+  }
 
 });
 
 /* ================================
-   MOBILE SIDEBAR MENU
+   MOBILE SIDEBAR MENU (OK OUTSIDE)
 ================================ */
 function openMenu() {
   const sidebar = document.getElementById("sidebar");
