@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
         date: document.getElementById("date").value
       };
 
-        fetch("http://localhost:5000/book", {
+      fetch("https://srivarahi-packers.onrender.com/book", {
+
 
         method: "POST",
         headers: {
@@ -95,4 +96,8 @@ function openMenu() {
 function closeMenu() {
   const sidebar = document.getElementById("sidebar");
   if (sidebar) sidebar.style.right = "-260px";
+}
+function openMenu() {
+  const menu = document.getElementById("mobileNav");
+  menu.classList.toggle("show");
 }
