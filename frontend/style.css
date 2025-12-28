@@ -1119,18 +1119,19 @@ body {
 }
 
 .brand img {
-  width: 80px;
+  width: 90px;
 }
 
 .brand-text h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: 24px;
+  font-weight: 700;
   color: #111;
 }
 
 .brand-text p {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   color: #555;
 }
 
@@ -1924,5 +1925,480 @@ body {
   /* Push hero below fixed header */
   .hero {
     padding-top: 110px;
+  }
+}
+/* =========================
+   MOBILE HEADER LOGO + TEXT FIX
+   (ONLY MOBILE)
+========================= */
+@media (max-width: 768px) {
+
+  .mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-brand img {
+    height: 48px;      /* 🔥 increased from 40px */
+    width: auto;
+    object-fit: contain;
+  }
+
+  .mobile-brand span {
+    font-size: 16px;   /* 🔥 increased text size */
+    font-weight: 700;
+    line-height: 1.2;
+    color: #111;
+  }
+
+  .mobile-header {
+    height: 70px;      /* keeps header balanced */
+    padding: 10px 14px;
+  }
+}
+/* ================================
+   MOBILE MENU BAR – LIKE REFERENCE
+   ================================ */
+@media (max-width: 768px) {
+
+  /* Full-width gold bar */
+  .mobile-menu-bar {
+    width: 100%;
+    background-color: #b08a3c;   /* same brown/gold */
+    padding: 14px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Hamburger box */
+  .mobile-menu-icon {
+    width: 56px;                /* increased width */
+    height: 44px;
+    border: 1.5px solid #ffffff;
+    color: #ffffff;
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+}
+/* ==================================
+   MOBILE FIXED CALL & WHATSAPP BAR
+   ================================== */
+@media (max-width: 768px) {
+
+  .floating-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;   /* 🔴 THIS IS IMPORTANT */
+    z-index: 9999;
+  }
+
+  .call-float,
+  .whatsapp-float {
+    flex: 1;               /* 50% each */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .call-float {
+    background-color: #b08a3c; /* gold */
+  }
+
+  .whatsapp-float {
+    background-color: #25d366; /* green */
+  }
+}
+/* FIX: Mobile header logo size */
+@media (max-width: 768px) {
+  .mobile-logo img {
+    height: 40px;        /* controls logo height */
+    width: auto;         /* keeps aspect ratio */
+    max-width: 100%;
+  }
+
+  .mobile-logo span {
+    font-size: 14px;     /* optional: keeps text neat */
+    line-height: 1.2;
+  }
+}
+/* FORCE FIX: hamburger size */
+@media (max-width: 768px) {
+
+  header.mobile-header .hamburger {
+    font-size: 20px !important;
+    width: 32px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  header.mobile-header .mobile-menu-bar {
+    padding: 6px 12px !important;
+    min-height: 44px !important;
+  }
+
+}
+/* ================= MOBILE HEADER ================= */
+@media (max-width: 768px) {
+
+  .mobile-header {
+    display: block;
+  }
+
+  .mobile-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #fff;
+  }
+
+  .mobile-logo-img {
+    height: 45px;
+    width: auto;
+  }
+
+  .mobile-text strong {
+    font-size: 14px;
+    display: block;
+  }
+
+  .mobile-text small {
+    font-size: 11px;
+    color: #555;
+  }
+
+  .mobile-menu-bar {
+    background: #b8913f; /* gold */
+    color: #fff;
+    text-align: center;
+    font-size: 24px;
+    padding: 12px 0;
+    cursor: pointer;
+  }
+
+  .mobile-nav {
+    display: none;
+    background: #000;
+  }
+
+  .mobile-nav a,
+  .mobile-nav summary {
+    display: block;
+    padding: 14px;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+  }
+
+  .mobile-nav details a {
+    padding-left: 25px;
+    font-size: 14px;
+  }
+
+}
+/* ===============================
+   FINAL MOBILE HEADER FIX
+================================ */
+@media (max-width: 768px) {
+
+  /* Hide desktop header */
+  .main-header {
+    display: none !important;
+  }
+
+  /* Mobile header base */
+  .mobile-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    padding: 10px 12px;
+    height: 64px;            /* 🔑 fixed height */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Logo + text row */
+  .mobile-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-logo-img {
+    height: 42px;
+    width: auto;
+  }
+
+  .mobile-text strong {
+    font-size: 14px;
+    display: block;
+    line-height: 1.2;
+  }
+
+  .mobile-text small {
+    font-size: 11px;
+    color: #555;
+    line-height: 1.2;
+  }
+
+  /* REMOVE gold bar behavior */
+  .mobile-menu-bar {
+    background: none !important;
+    color: #b8913f;
+    font-size: 26px;
+    height: auto;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Mobile menu panel */
+  .mobile-nav {
+    display: none;
+    background: #000;
+  }
+
+  .mobile-nav.show {
+    display: block;
+  }
+
+  .mobile-nav a,
+  .mobile-nav summary {
+    padding: 14px;
+    color: #fff;
+    display: block;
+    border-bottom: 1px solid #333;
+  }
+}
+/* ===============================
+   MOBILE LOGO + NAME FIX
+================================ */
+@media (max-width: 768px) {
+
+  .mobile-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 85%;
+  }
+
+  .mobile-logo-img {
+    height: 46px;        /* 🔑 slightly bigger logo */
+    width: auto;
+  }
+
+  .mobile-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.1;
+  }
+
+  .mobile-text strong {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;   /* 🔑 prevents ugly wrapping */
+  }
+
+  .mobile-text small {
+    font-size: 11px;
+    color: #666;
+  }
+
+}
+/* =====================================
+   UNIVERSAL MOBILE HEADER (ALL PAGES)
+===================================== */
+@media (max-width: 768px) {
+
+  /* Hide desktop header everywhere */
+  .main-header {
+    display: none !important;
+  }
+
+  /* Mobile header container */
+  .mobile-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    padding: 10px 12px;
+    height: 64px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1000;
+  }
+
+  /* Logo + text */
+  .mobile-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 85%;
+  }
+
+  .mobile-logo-img {
+    height: 46px;
+    width: auto;
+  }
+
+  .mobile-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.1;
+  }
+
+  .mobile-text strong {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .mobile-text small {
+    font-size: 11px;
+    color: #666;
+  }
+
+  /* Hamburger menu icon */
+  .mobile-menu-bar {
+    background: none !important;
+    color: #b8913f;
+    font-size: 26px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  /* Mobile navigation */
+  .mobile-nav {
+    display: none;
+    background: #000;
+  }
+
+  .mobile-nav.show {
+    display: block;
+  }
+
+  .mobile-nav a,
+  .mobile-nav summary {
+    display: block;
+    padding: 14px;
+    color: #fff;
+    border-bottom: 1px solid #333;
+    text-decoration: none;
+  }
+
+  .mobile-nav details a {
+    padding-left: 26px;
+    font-size: 14px;
+  }
+}
+/* ================================
+   FIX: MOBILE HEADER LOGO SIZE
+   (FOR ALL PAGES INCLUDING SERVICES)
+================================ */
+
+.mobile-top img,
+.mobile-logo-img {
+  max-height: 40px;     /* controls height */
+  width: auto;          /* keeps aspect ratio */
+  object-fit: contain;
+}
+/* ================================
+   FIX: FLOATING CALL & WHATSAPP
+   ALIGNMENT ON SERVICE PAGES
+================================ */
+
+/* Container fix */
+.floating-buttons {
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 9999;
+}
+
+/* Individual button fix */
+.floating-buttons a {
+  position: relative;
+  bottom: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* ================================
+   HERO PHONE CLICKABLE
+================================ */
+
+.hero .hero-phone {
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 30px;
+  display: inline-block;
+  text-decoration: none; /* remove underline */
+}
+
+.hero .hero-phone:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+/* =========================================
+   DESKTOP ONLY – FIX CALL & WHATSAPP BARS
+   (Force override – mobile untouched)
+========================================= */
+@media (min-width: 769px) {
+
+  .floating-buttons {
+    position: fixed !important;
+    right: 20px !important;
+    bottom: 20px !important;
+
+    left: auto !important;
+    width: auto !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    z-index: 9999 !important;
+  }
+
+  .floating-buttons a {
+    width: auto !important;
+    min-width: unset !important;
+    max-width: unset !important;
+
+    padding: 12px 20px !important;
+    border-radius: 30px !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 14px !important;
+    white-space: nowrap !important;
   }
 }

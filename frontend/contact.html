@@ -8,26 +8,109 @@
 </head>
 
 <body>
+  <header class="main-header">
+  <div class="header-container">
+
+    <!-- LEFT: LOGO + NAME -->
+    <div class="brand">
+      <img src="images/logo.png.jpeg" alt="Sri Varahi Logo">
+      <div class="brand-text">
+        <h2>Sri Varahi Packers & Movers</h2>
+        <p>Safe • Reliable • Affordable</p>
+        
+      </div>
+    </div>
+    
+
+    <!-- RIGHT: CONTACT DETAILS -->
+    <div class="header-info">
+      <div class="info-box">
+        <span>📍</span>
+        <p>Opp. Governement Polytechnic College, Gujarathi Peta, Srikakulam,532005</p>
+      </div>
+
+      <div class="info-box">
+        <span>✉️</span>
+        <a href="mailto:srivarahipackersandmovers@gmail.com">
+  srivarahipackersandmovers@gmail.com
+</a>
+
+      </div>
+
+      <div class="info-box">
+        <span>📞</span>
+        <a href="tel:+919492160373">+91 9492160373</a>
+
+      </div>
+    </div>
+
+  </div>
+</header>
 
 <!-- ================= HEADER (reuse your existing header CSS) ================= -->
-<header class="site-header">
-  <div class="logo-box">
-    <img src="images/logo.png.jpeg" alt="Sri Varahi Packers Logo">
-    <div class="logo-text">
-      <h1>Sri Varahi Packers & Movers</h1>
-      <p>Safe • Reliable • Affordable</p>
+<header class="mobile-header">
+
+  <!-- TOP WHITE BAR -->
+  <div class="mobile-top">
+    <img src="images/logo.png.jpeg" alt="Logo" class="mobile-logo-img">
+
+    <div class="mobile-text">
+      <strong>Sri Varahi Packers & Movers</strong>
+      <small>Safe • Reliable • Affordable</small>
     </div>
   </div>
 
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="#services">Services</a>
-    <a href="about.html">About</a>
-    <a href="why-us.html">Why Us</a>
+  <!-- GOLD MENU BAR -->
+  <div class="mobile-menu-bar" id="menuToggle">☰</div>
+
+</header>
+
+<!-- ================= MOBILE MENU ================= -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+
+  <details>
+    <summary>Services</summary>
+    <a href="services/house-shifting.html">House Shifting</a>
+    <a href="services/office-shifting.html">Office Shifting</a>
+    <a href="services/local-shifting.html">Local Shifting</a>
+    <a href="services/all-india-shifting.html">All India Shifting</a>
+    <a href="services/packing.html">Packing & Unpacking</a>
+    <a href="services/loading-unloading.html">Loading & Unloading</a>
+    <a href="services/vehicle-shifting.html">Vehicle Transportation</a>
+  </details>
+
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
+</nav>
+ <!-- DESKTOP HEADER (DESKTOP ONLY) -->
+<header class="main-header">
+  <nav class="main-nav">
+    <a class="active" href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+
+    <div class="nav-item dropdown">
+      <a href="#services" class="drop-btn">Services ▾</a>
+      <div class="nav-dropdown">
+        <a href="services/house-shifting.html">House Shifting</a>
+        <a href="services/office-shifting.html">Office Shifting</a>
+        <a href="services/local-shifting.html">Local Shifting</a>
+        <a href="services/all-india-shifting.html">All India Shifting</a>
+        <a href="services/packing.html">Packing & Unpacking</a>
+        <a href="services/loading-unloading.html">Loading & Unloading</a>
+        <a href="services/vehicle-shifting.html">Vehicle Transportation</a>
+      </div>
+    </div>
+
     <a href="gallery.html">Gallery</a>
-    <a href="contact.html" class="active">Contact</a>
+    <a href="contact.html">Contact</a>
+    <a href="#contact" class="quote-btn">GET FREE QUOTE</a>
   </nav>
 </header>
+
+
+
 
 <!-- ================= HERO SECTION ================= -->
 <section class="service-hero">
@@ -105,6 +188,8 @@
   </div>
 
 </footer>
+<script src="script.js"></script>
+
 
 </body>
 </html>

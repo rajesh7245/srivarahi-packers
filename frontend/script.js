@@ -82,20 +82,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ================================
-     MOBILE MENU AUTO CLOSE (FIX)
+     MOBILE MENU TOGGLE (NEW STRUCTURE)
+  ================================ */
+  const menuToggle = document.getElementById("menuToggle");
+  const mobileNav = document.getElementById("mobileNav");
+
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener("click", () => {
+      mobileNav.classList.toggle("show");
+    });
+  }
+
+  /* ================================
+     MOBILE MENU AUTO CLOSE
   ================================ */
   document.querySelectorAll("#mobileNav a").forEach(link => {
     link.addEventListener("click", () => {
-      document.getElementById("mobileNav").classList.remove("show");
+      mobileNav.classList.remove("show");
     });
   });
 
 });
-
-/* ================================
-   MOBILE MENU TOGGLE
-================================ */
-function openMenu() {
-  const mobileNav = document.getElementById("mobileNav");
-  mobileNav.classList.toggle("show");
-}
