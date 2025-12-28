@@ -1835,3 +1835,94 @@ body {
     border-radius: 30px;      /* pill shape */
   }
 }
+/* =========================
+   MOBILE HEADER – HR FINAL STYLE
+========================= */
+@media (max-width: 768px) {
+
+  /* Hide desktop header */
+  .main-header,
+  .main-nav {
+    display: none !important;
+  }
+
+  /* MAIN MOBILE HEADER */
+  .mobile-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: #fff;
+  }
+
+  /* TOP WHITE BAR */
+  .mobile-top {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-brand img {
+    height: 40px;      /* 🔑 correct logo size */
+    width: auto;
+  }
+
+  .mobile-brand span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    white-space: nowrap;
+  }
+
+  /* GOLD MENU BAR */
+  .mobile-menu-bar {
+    background: #b58b3a;   /* gold */
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu-icon {
+    font-size: 26px;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  /* MOBILE MENU DROPDOWN */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: #0b2d52;
+    width: 100%;
+    position: fixed;
+    top: 98px; /* white + gold bars */
+    left: 0;
+    z-index: 999;
+  }
+
+  .mobile-nav a {
+    color: #fff;
+    padding: 14px 18px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    font-size: 16px;
+  }
+
+  .mobile-nav.show {
+    display: flex;
+  }
+
+  /* Push hero below fixed header */
+  .hero {
+    padding-top: 110px;
+  }
+}
