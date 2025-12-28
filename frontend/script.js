@@ -27,8 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       fetch("https://srivarahi-packers.onrender.com/book", {
-
-
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -71,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   revealOnScroll();
 
   /* ================================
-     SERVICES DROPDOWN (MOBILE ONLY) ✅
+     SERVICES DROPDOWN (MOBILE ONLY)
   ================================ */
   const serviceLink = document.querySelector(".services-link");
   const dropdown = document.querySelector(".nav-dropdown");
@@ -83,21 +81,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* ================================
+     MOBILE MENU AUTO CLOSE (FIX)
+  ================================ */
+  document.querySelectorAll("#mobileNav a").forEach(link => {
+    link.addEventListener("click", () => {
+      document.getElementById("mobileNav").classList.remove("show");
+    });
+  });
+
 });
 
 /* ================================
-   MOBILE SIDEBAR MENU (OK OUTSIDE)
+   MOBILE MENU TOGGLE
 ================================ */
 function openMenu() {
-  const sidebar = document.getElementById("sidebar");
-  if (sidebar) sidebar.style.right = "0";
-}
-
-function closeMenu() {
-  const sidebar = document.getElementById("sidebar");
-  if (sidebar) sidebar.style.right = "-260px";
-}
-function openMenu() {
-  const menu = document.getElementById("mobileNav");
-  menu.classList.toggle("show");
+  const mobileNav = document.getElementById("mobileNav");
+  mobileNav.classList.toggle("show");
 }

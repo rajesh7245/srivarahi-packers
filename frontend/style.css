@@ -659,12 +659,12 @@ body {
 /* FLOATING BUTTONS */
 .floating-buttons {
   position: fixed;
-  right: 20px;
+  right: 12px;
   bottom: 120px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  z-index: 999;
+  z-index: 9999;
 }
 
 .call-btn,
@@ -747,9 +747,7 @@ body {
   position: relative;
   min-height: 420px;
   width: 100%;
-  background-image: 
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url("../images/all-india-shifting.jpg");
+  
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1474,9 +1472,366 @@ body {
   background: red;
   transform: translate(-50%, -50%) scale(1.1);
 }
+/* ===============================
+   DESKTOP vs MOBILE HEADER FIX
+================================ */
+
+/* =========================
+   DEFAULT: DESKTOP VIEW
+========================= */
+
+.mobile-header {
+  display: none;
+}
+
+.main-header {
+  display: block;
+}
 
 
+/* =========================
+  /* =========================
+   MOBILE VIEW
+========================= */
+@media (max-width: 768px) {
+
+  /* Hide desktop header & nav */
+  .main-header,
+  .main-nav {
+    display: none !important;
+  }
+
+  /* Mobile header */
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  /* Mobile menu (hidden by default) */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: #0b2d52;
+    width: 100%;
+    position: fixed;
+    top: 56px; /* below header */
+    left: 0;
+    z-index: 999;
+  }
+
+  .mobile-nav a {
+    color: #fff;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    font-size: 16px;
+  }
+
+  /* Show ONLY when toggled */
+  .mobile-nav.show {
+    display: flex;
+  }
+}
+
+  /* FIX MOBILE LOGO SIZE */
+
+
+
+/* ===============================
+   MOBILE HERO BUTTON FIX ONLY
+   =============================== */
+
+/* =========================
+   MOBILE FLOATING BUTTONS – FINAL FIX
+   ========================= */
+@media (max-width: 768px) {
+
+  .floating-buttons {
+    right: 12px;
+    bottom: 90px;
+    gap: 10px;
+  }
+
+  .floating-buttons a {
+    width: auto;              /* prevents full width */
+    min-width: 90px;          /* medium size */
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  /* Remove phone numbers */
+  .floating-buttons a {
+    text-indent: -9999px;
+    position: relative;
+  }
+
+  /* Call label */
+  .floating-buttons a[href^="tel"]::after {
+    content: "📞 Call";
+    text-indent: 0;
+    position: absolute;
+  }
+
+  /* WhatsApp label */
+  .floating-buttons a[href*="wa.me"]::after {
+    content: "💬 WhatsApp";
+    text-indent: 0;
+    position: absolute;
+  }
+}
+/* ===============================
+   SERVICE HERO COMMON STYLE
+================================ */
+.service-hero {
+  height: 260px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: #fff;
+}
+
+/* Overlay */
+.service-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ===============================
+   INDIVIDUAL HERO IMAGES
+================================ */
+.local-hero {
+  background-image: url("../images/local-shifting.jpg");
+}
+
+.india-hero {
+  background-image: url("../images/all-india-shifting.jpg");
+}
+
+.packing-hero {
+  background-image: url("../images/packing-unpacking.jpg");
+}
+
+.office-hero {
+  background-image: url("../images/office-shifting.jpg");
+}
+
+.house-hero {
+  background-image: url("../images/house-shifting.jpg");
+}
+
+.loading-hero {
+  background-image: url("../images/loading-unloading.jpg");
+}
+
+.vehicle-hero {
+  background-image: url("../images/vehicle-shifting.jpg");
+}
+.relocation-hero {
+  background-image: url("../images/relocation.jpg");
+}
+@media (max-width: 768px) {
+  .service-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+/* =========================
+   FORCE HEADER CONTROL
+========================= */
+
+/* Desktop only */
+@media (min-width: 769px) {
+  .mobile-header,
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+/* Mobile only */
 
   
+@media (max-width: 768px) {
+  .hero {
+    min-height: 70vh;
+    padding-top: 90px; /* space for fixed header */
+    padding-bottom: 40px;
+    background-position: center;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+}
+/* =========================
+   MOBILE FLOATING BUTTON FIX
+========================= */
+
+@media (max-width: 768px) {
+  .call-now,
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 15px;
+    z-index: 999;
+  }
+
+  body {
+    padding-bottom: 100px;
+  }
+}
+/* =========================
+   MOBILE MENU FIX
+   (DO NOT AFFECT DESKTOP)
+========================= */
 
 
+/* Desktop only */
+@media (min-width: 769px) {
+
+  .main-nav {
+    display: flex;
+  }
+
+  .mobile-header,
+  .mobile-nav {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+
+  /* FIX LOGO SIZE (MOBILE ONLY) */
+  .mobile-brand img {
+    height: 40px;      /* controls logo height */
+    width: auto;       /* keeps proportions */
+    max-width: 40px;   /* prevents stretching */
+    object-fit: contain;
+  }
+
+  /* Keep header height stable */
+  .mobile-header {
+    height: 60px;
+  }
+
+}
+/* =========================
+   MOBILE MENU – FINAL FIX
+   (ONLY CHANGE)
+========================= */
+
+/* Desktop only */
+@media (min-width: 769px) {
+  .mobile-header,
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+
+  /* Hide desktop header/nav */
+  .main-header,
+  .main-nav {
+    display: none !important;
+  }
+
+  /* Show mobile header */
+  .mobile-header {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    padding: 8px 12px;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Logo size FIX */
+  .mobile-brand img {
+    height: 40px;
+    width: auto;
+    max-width: 40px;
+    object-fit: contain;
+  }
+
+  /* Mobile menu HIDDEN by default */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    background: #0b2d52;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+
+  .mobile-nav a {
+    color: #fff;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    font-size: 16px;
+  }
+
+  /* SHOW ONLY WHEN ☰ CLICKED */
+  .mobile-nav.show {
+    display: flex;
+  }
+}
+/* =========================
+   MOBILE HERO BUTTON SIZE FIX
+   (ONLY THIS CHANGE)
+========================= */
+@media (max-width: 768px) {
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* center buttons */
+    gap: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: auto;              /* STOP full width */
+    min-width: 160px;         /* nice medium size */
+    padding: 10px 22px;
+    text-align: center;
+    border-radius: 30px;      /* pill shape */
+  }
+}
